@@ -1,0 +1,11 @@
+This is a tutorial video on how to connect your account to the extension.
+ By following the video you will be able to generate your GitHub personal access token, after generating it copy the token and pest it in the extension, then click save and verify.
+
+
+
+after you complete this step your extension will be active.
+And if you want you can delete the tutorial folder.
+
+
+
+THANKS FOR USING MY EXTENSION.

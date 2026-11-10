@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub QuickPush</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+
+  <!-- ═══ HEADER BAR ═══ -->
+  <header id="header">
+    <div class="header-left">
+      <svg class="logo-icon" viewBox="0 0 16 16" width="20" height="20" fill="#c9d1d9">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15
+          -.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87
+          .51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12
+          0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82
+          2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65
+          3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013
+          0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      <span class="header-title">QuickPush</span>
+    </div>
+    <div class="header-right">
+      <div id="user-info" class="user-info hidden">
+        <img id="user-avatar" class="avatar" alt="" />
+        <span id="user-login" class="user-login"></span>
+        <span id="rate-limit-badge" class="rate-limit-badge" title="API calls remaining"></span>
+      </div>
+      <button id="settings-toggle" class="icon-btn" title="Settings">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+          <path d="M8 0a8.2 8.2 0 0 1 .701.031C9.444.095 9.99.645 10.16 1.29l.288 1.107a.697
+            .697 0 0 0 .71.456c.166-.018.325-.052.478-.1l1.03-.385c.602-.225 1.273-.07
+            1.72.378l.495.495c.448.448.603 1.118.378 1.72l-.385 1.03a.697.697 0 0 0
+            .356 1.188l1.107.288c.645.17 1.195.716 1.26 1.459a8.207 8.207 0 0 1
+            0 1.402c-.065.743-.615 1.289-1.26 1.459l-1.107.288a.697.697 0 0
+            0-.356 1.188l.385 1.03c.225.602.07 1.272-.378 1.72l-.495.495c-.448.448-1.118.603
+            -1.72.378l-1.03-.385a.697.697 0 0 0-1.188.356l-.288 1.107c-.17.645-.716
+            1.195-1.459 1.26a8.207 8.207 0 0 1-1.402 0c-.743-.065-1.289-.615-1.459
+            -1.26l-.288-1.107a.697.697 0 0 0-1.188-.356l-1.03.385c-.602.225-1.272.07
+            -1.72-.378l-.495-.495c-.448-.448-.603-1.118-.378-1.72l.385-1.03a.697.697
+            0 0 0-.356-1.188L1.29 10.16c-.645-.17-1.195-.716-1.26-1.459a8.207 8.207
+            0 0 1 0-1.402c.065-.743.615-1.289 1.26-1.459l1.107-.288a.697.697 0 0 0
+            .356-1.188l-.385-1.03c-.225-.602-.07-1.272.378-1.72l.495-.495c.448-.448
+            1.118-.603 1.72-.378l1.03.385a.697.697 0 0 0 1.188-.356l.288-1.107C6.01.645
+            6.556.095 7.299.03 7.53.01 7.764 0 8 0zm-.571 1.525c-.036.003-.108.036-.137
+            .146l-.289 1.105c-.147.561-.549.967-.998 1.189-.173.086-.34.183-.5.29-.417.278
+            -.97.423-1.529.27l-1.103-.303c-.109-.03-.175.016-.195.046l-.496.495c-.03.03
+            -.077.096-.046.195l.303 1.103c.153.56.009 1.111-.27 1.53a4.946 4.946 0 0
+            0-.29.498c-.222.45-.628.852-1.189.999l-1.105.289c-.11.03-.148.1-.151.137a6.304
+            6.304 0 0 0 0 1.142c.003.036.04.108.15.137l1.106.29c.56.146.966.548 1.188.998
+            .087.174.184.34.29.5.278.418.424.97.271 1.53l-.303 1.103c-.03.109.016.174.046
+            .195l.496.495c.03.03.096.077.195.046l1.103-.303c.56-.153 1.111-.008 1.53.27
+            .159.107.327.204.499.29.45.222.852.629.999 1.19l.289 1.105c.029.109.1.147.137
+            .15a6.304 6.304 0 0 0 1.142 0c.036-.003.108-.04.137-.15l.289-1.106c.147-.56
+            .549-.967.999-1.189a4.94 4.94 0 0 0 .498-.29c.418-.277.97-.423 1.53-.27l1.103
+            .303c.109.029.175-.016.195-.046l.495-.495c.03-.03.077-.096.046-.196l-.303-1.103
+            c-.153-.56-.008-1.111.27-1.529.107-.16.204-.327.29-.499.222-.45.628-.852 1.189
+            -.999l1.105-.289c.11-.029.148-.1.151-.137a6.304 6.304 0 0 0 0-1.142c-.003-.036
+            -.04-.108-.15-.137l-1.106-.289c-.56-.147-.967-.55-1.189-.999a4.94 4.94 0 0
+            0-.29-.498c-.278-.418-.423-.97-.27-1.53l.303-1.103c.03-.11-.016-.175-.046-.196
+            l-.495-.495c-.03-.03-.096-.077-.196-.046l-1.103.303c-.56.153-1.112.008-1.53-.27
+            a4.94 4.94 0 0 0-.498-.29c-.45-.222-.852-.628-.999-1.189l-.29-1.105c-.029-.11
+            -.1-.148-.136-.15a6.304 6.304 0 0 0-1.142 0zM11 8a3 3 0 1 1-6 0 3 3 0 0 1
+            6 0zm-1 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══ SETTINGS PANEL (collapsible) ═══ -->
+  <section id="settings-panel" class="settings-panel hidden">
+    <div class="settings-group">
+      <label class="settings-label">Personal Access Token</label>
+      <div class="token-input-row">
+        <input type="password" id="pat-input" class="input" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+        <button id="toggle-pat-vis" class="icon-btn small" title="Show/Hide">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+            <path d="M8 2c1.981 0 3.671.992 4.933 2.078 1.27 1.091 2.187 2.345
+              2.637 3.023a1.62 1.62 0 010 1.798c-.45.678-1.367 1.932-2.637
+              3.023C11.671 13.008 9.981 14 8 14c-1.981 0-3.671-.992-4.933
+              -2.078C1.797 10.831.88 9.577.43 8.899a1.62 1.62 0 010-1.798c.45
+              -.678 1.367-1.932 2.637-3.023C4.329 2.992 6.019 2 8 2zM1.679
+              7.932a.12.12 0 000 .136c.411.622 1.241 1.75 2.366 2.717C5.176
+              11.758 6.527 12.5 8 12.5c1.473 0 2.825-.742 3.955-1.715 1.124
+              -.967 1.954-2.096 2.366-2.717a.12.12 0 000-.136c-.412-.621-1.242
+              -1.75-2.366-2.717C10.824 4.242 9.473 3.5 8 3.5c-1.473 0-2.824
+              .742-3.955 1.715-1.124.967-1.954 2.096-2.366 2.717zM8 10a2
+              2 0 110-4 2 2 0 010 4z"/>
+          </svg>
+        </button>
+      </div>
+      <div id="token-status" class="token-status"></div>
+      <button id="save-token-btn" class="btn btn-primary btn-sm">Save &amp; Verify</button>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label">Interface Mode</label>
+      <div class="mode-switch">
+        <span class="mode-label" data-mode="beginner">Beginner</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="pro-mode-toggle" />
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="mode-label" data-mode="pro">Pro</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MODE TABS (5 Intake Modes) ═══ -->
+  <nav id="mode-tabs" class="mode-tabs">
+    <button class="tab active" data-mode="repo" title="Push Folders">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3H7.5a.25.25 0 01-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75z"/></svg>
+      <span>Repo</span>
+    </button>
+    <button class="tab" data-mode="file" title="Push Files">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5H3.75zm5.75.56v2.19c0 .138.112.25.25.25h2.19L9.5 2.06zM2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v8.086A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25V1.75z"/></svg>
+      <span>File</span>
+    </button>
+    <button class="tab" data-mode="gist" title="Create Gist">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8.47 1.318a1 1 0 00-.94 0l-6 3.2a1 1 0 000 1.764l6 3.2a1 1 0 00.94 0l6-3.2a1 1 0 000-1.764l-6-3.2zM8 8.752l-5.246-2.798L8 3.156l5.246 2.798L8 8.752z"/><path d="M1.53 8.662a1 1 0 01.94-.531l5.53 2.952 5.53-2.952a1 1 0 011.47.884v.045a1 1 0 01-.53.884l-6 3.2a1 1 0 01-.94 0l-6-3.2a1 1 0 01-.53-.884v-.045a1 1 0 01.53-.353z"/></svg>
+      <span>Gist</span>
+    </button>
+    <button class="tab" data-mode="bookmark" title="Clip Bookmark">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 01-1.227.579L8 11.722l-3.773 3.107A.75.75 0 013 14.25V2.75z"/></svg>
+      <span>Bookmark</span>
+    </button>
+    <button class="tab" data-mode="release" title="Create Release">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8.878.392a1.75 1.75 0 00-1.756 0l-5.25 3.045A1.75 1.75 0 001 5.07v5.86c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75 0 001.756 0l5.25-3.045c.54-.313.872-.89.872-1.514V5.07c0-.624-.332-1.2-.872-1.514L8.878.392zM7.875 1.69a.25.25 0 01.25 0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685zM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677zm6.25 8.271l4.625-2.683a.25.25 0 00.125-.216V5.677L8.75 8.432v5.516z"/></svg>
+      <span>Release</span>
+    </button>
+  </nav>
+
+  <!-- ═══ MAIN CONTENT AREA ═══ -->
+  <main id="main-content">
+
+    <!-- ─── REPO MODE ─── -->
+    <section class="mode-panel active" data-mode="repo">
+      <div id="repo-dropzone" class="dropzone" tabindex="0">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="#30363d">
+          <path d="M11 14.586V20h2v-5.414l2.293 2.293 1.414-1.414L12 10.758l-4.707 4.707 1.414 1.414L11 14.586z"/>
+          <path d="M4 14v4c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-4h-2v4H6v-4H4z"/>
+          <path d="M12 2C6.486 2 2 6.486 2 12h2c0-4.411 3.589-8 8-8s8 3.589 8 8h2c0-5.514-4.486-10-10-10z" opacity="0"/>
+        </svg>
+        <p class="dropzone-text">Drop folder here or <strong>click to browse</strong></p>
+        <p class="dropzone-hint">Supports full project directories</p>
+      </div>
+      <input type="file" id="repo-folder-input" webkitdirectory multiple hidden />
+
+      <!-- Scanner Alerts -->
+      <div id="scanner-alerts" class="scanner-alerts hidden"></div>
+
+      <!-- Staging Area (Pro Mode) -->
+      <div id="staging-area" class="staging-area pro-only hidden">
+        <div class="staging-header">
+          <span class="staging-title">
+            Staged Files <span id="staged-count" class="badge">0</span>
+          </span>
+          <div class="staging-actions">
+            <button id="select-all-btn" class="btn-ghost btn-xs">Select All</button>
+            <button id="deselect-all-btn" class="btn-ghost btn-xs">Deselect All</button>
+          </div>
+        </div>
+        <div id="file-tree" class="file-tree"></div>
+      </div>
+
+      <!-- File Summary (Beginner Mode) -->
+      <div id="file-summary" class="file-summary beginner-only hidden">
+        <div id="summary-icon" class="summary-icon">📁</div>
+        <div id="summary-text" class="summary-text"></div>
+      </div>
+
+      <!-- Repo & Branch Controls -->
+      <div id="repo-controls" class="controls-group hidden">
+        <label class="control-label">Repository</label>
+        <div class="repo-select-row">
+          <select id="repo-select" class="select">
+            <option value="">— Select Repository —</option>
+          </select>
+          <button id="repo-new-repo-btn" class="btn-ghost btn-xs new-repo-trigger" title="Create new repository">+ New Repo</button>
+        </div>
+        <div id="repo-new-repo-drawer" class="new-repo-drawer hidden">
+          <input type="text" id="repo-new-repo-name" class="input input-sm" placeholder="new-repo-name" />
+          <label class="checkbox-label checkbox-inline">
+            <input type="checkbox" id="repo-new-repo-private" />
+            <span>🔒 Private</span>
+          </label>
+          <div class="new-repo-actions">
+            <button id="repo-create-repo-btn" class="btn btn-primary btn-xs">Create &amp; Select</button>
+            <button id="repo-cancel-repo-btn" class="btn-ghost btn-xs">✕</button>
+          </div>
+        </div>
+
+        <div id="branch-controls" class="branch-controls pro-only hidden">
+          <label class="control-label">Branch</label>
+          <div class="branch-row">
+            <select id="branch-select" class="select">
+              <option value="main">main</option>
+            </select>
+            <button id="new-branch-btn" class="btn-ghost btn-xs" title="Create new branch">+ Branch</button>
+          </div>
+          <div id="new-branch-input-row" class="new-branch-row hidden">
+            <input type="text" id="new-branch-name" class="input input-sm" placeholder="feature/my-branch" />
+            <button id="create-branch-btn" class="btn btn-primary btn-xs">Create</button>
+            <button id="cancel-branch-btn" class="btn-ghost btn-xs">✕</button>
+          </div>
+        </div>
+
+        <!-- Commit Message -->
+        <label class="control-label">Commit Message</label>
+        <input type="text" id="commit-title" class="input" placeholder="Add project files" />
+        <textarea id="commit-body" class="input textarea pro-only hidden" placeholder="Extended description (optional)..." rows="3"></textarea>
+      </div>
+    </section>
+
+    <!-- ─── FILE MODE ─── -->
+    <section class="mode-panel" data-mode="file">
+      <div id="file-dropzone" class="dropzone" tabindex="0">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="#30363d">
+          <path d="M11 14.586V20h2v-5.414l2.293 2.293 1.414-1.414L12 10.758l-4.707 4.707 1.414 1.414L11 14.586z"/>
+          <path d="M4 14v4c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-4h-2v4H6v-4H4z"/>
+        </svg>
+        <p class="dropzone-text">Drop files here or <strong>click to browse</strong></p>
+        <p class="dropzone-hint">Individual files for targeted uploads</p>
+      </div>
+      <input type="file" id="file-file-input" multiple hidden />
+
+      <!-- File list -->
+      <div id="file-list" class="file-list hidden"></div>
+
+      <div id="file-controls" class="controls-group hidden">
+        <label class="control-label">Destination Path</label>
+        <input type="text" id="file-dest-path" class="input" placeholder="src/utils/" />
+
+        <label class="control-label">Repository</label>
+        <div class="repo-select-row">
+          <select id="file-repo-select" class="select">
+            <option value="">— Select Repository —</option>
+          </select>
+          <button id="file-new-repo-btn" class="btn-ghost btn-xs new-repo-trigger" title="Create new repository">+ New Repo</button>
+        </div>
+        <div id="file-new-repo-drawer" class="new-repo-drawer hidden">
+          <input type="text" id="file-new-repo-name" class="input input-sm" placeholder="new-repo-name" />
+          <label class="checkbox-label checkbox-inline">
+            <input type="checkbox" id="file-new-repo-private" />
+            <span>🔒 Private</span>
+          </label>
+          <div class="new-repo-actions">
+            <button id="file-create-repo-btn" class="btn btn-primary btn-xs">Create &amp; Select</button>
+            <button id="file-cancel-repo-btn" class="btn-ghost btn-xs">✕</button>
+          </div>
+        </div>
+
+        <div id="file-branch-controls" class="branch-controls pro-only hidden">
+          <label class="control-label">Branch</label>
+          <select id="file-branch-select" class="select">
+            <option value="main">main</option>
+          </select>
+        </div>
+
+        <label class="control-label">Commit Message</label>
+        <input type="text" id="file-commit-title" class="input" placeholder="Add files" />
+      </div>
+    </section>
+
+    <!-- ─── GIST MODE ─── -->
+    <section class="mode-panel" data-mode="gist">
+      <div class="controls-group">
+        <label class="control-label">Filename</label>
+        <input type="text" id="gist-filename" class="input" placeholder="snippet.js" />
+
+        <label class="control-label">Content</label>
+        <textarea id="gist-content" class="input textarea code-textarea" placeholder="// Paste your code here..." rows="10"></textarea>
+
+        <label class="control-label">Description</label>
+        <input type="text" id="gist-description" class="input" placeholder="A useful snippet" />
+
+        <div class="gist-visibility">
+          <label class="radio-label">
+            <input type="radio" name="gist-visibility" value="public" checked />
+            <span>🌐 Public</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="gist-visibility" value="secret" />
+            <span>🔒 Secret</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── BOOKMARK MODE ─── -->
+    <section class="mode-panel" data-mode="bookmark">
+      <div class="controls-group">
+        <button id="clip-page-btn" class="btn btn-outline clip-btn">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-.025 5.475a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25z"/></svg>
+          Clip Current Page
+        </button>
+
+        <div id="bookmark-preview" class="bookmark-preview hidden">
+          <div class="bookmark-title" id="bookmark-title"></div>
+          <div class="bookmark-url" id="bookmark-url"></div>
+        </div>
+
+        <label class="control-label">Repository</label>
+        <div class="repo-select-row">
+          <select id="bookmark-repo-select" class="select">
+            <option value="">— Select Repository —</option>
+          </select>
+          <button id="bookmark-new-repo-btn" class="btn-ghost btn-xs new-repo-trigger" title="Create new repository">+ New Repo</button>
+        </div>
+        <div id="bookmark-new-repo-drawer" class="new-repo-drawer hidden">
+          <input type="text" id="bookmark-new-repo-name" class="input input-sm" placeholder="new-repo-name" />
+          <label class="checkbox-label checkbox-inline">
+            <input type="checkbox" id="bookmark-new-repo-private" />
+            <span>🔒 Private</span>
+          </label>
+          <div class="new-repo-actions">
+            <button id="bookmark-create-repo-btn" class="btn btn-primary btn-xs">Create &amp; Select</button>
+            <button id="bookmark-cancel-repo-btn" class="btn-ghost btn-xs">✕</button>
+          </div>
+        </div>
+
+        <label class="control-label">File Path</label>
+        <input type="text" id="bookmark-file-path" class="input" value="links.md" />
+
+        <div id="bookmark-branch-controls" class="branch-controls pro-only hidden">
+          <label class="control-label">Branch</label>
+          <select id="bookmark-branch-select" class="select">
+            <option value="main">main</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── RELEASE MODE ─── -->
+    <section class="mode-panel" data-mode="release">
+      <div class="controls-group">
+        <label class="control-label">Repository</label>
+        <div class="repo-select-row">
+          <select id="release-repo-select" class="select">
+            <option value="">— Select Repository —</option>
+          </select>
+          <button id="release-new-repo-btn" class="btn-ghost btn-xs new-repo-trigger" title="Create new repository">+ New Repo</button>
+        </div>
+        <div id="release-new-repo-drawer" class="new-repo-drawer hidden">
+          <input type="text" id="release-new-repo-name" class="input input-sm" placeholder="new-repo-name" />
+          <label class="checkbox-label checkbox-inline">
+            <input type="checkbox" id="release-new-repo-private" />
+            <span>🔒 Private</span>
+          </label>
+          <div class="new-repo-actions">
+            <button id="release-create-repo-btn" class="btn btn-primary btn-xs">Create &amp; Select</button>
+            <button id="release-cancel-repo-btn" class="btn-ghost btn-xs">✕</button>
+          </div>
+        </div>
+
+        <label class="control-label">Tag Name</label>
+        <input type="text" id="release-tag" class="input" placeholder="v1.0.0" />
+
+        <label class="control-label">Release Title</label>
+        <input type="text" id="release-title" class="input" placeholder="Initial Release" />
+
+        <label class="control-label">Release Notes</label>
+        <textarea id="release-body" class="input textarea" placeholder="What's changed..." rows="4"></textarea>
+
+        <div class="release-flags">
+          <label class="checkbox-label">
+            <input type="checkbox" id="release-draft" />
+            <span>📝 Draft</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="release-prerelease" />
+            <span>🧪 Pre-release</span>
+          </label>
+        </div>
+
+        <div id="release-dropzone" class="dropzone dropzone-sm" tabindex="0">
+          <p class="dropzone-text">Drop asset (ZIP, binary) or <strong>click to browse</strong></p>
+        </div>
+        <input type="file" id="release-file-input" hidden />
+        <div id="release-file-info" class="file-info hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ PROGRESS BAR ═══ -->
+  <div id="progress-container" class="progress-container hidden">
+    <div class="progress-track">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+    <span id="progress-text" class="progress-text">Preparing...</span>
+  </div>
+
+  <!-- ═══ STATUS / TOAST ═══ -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- ═══ ACTION FOOTER ═══ -->
+  <footer id="action-footer" class="action-footer">
+    <button id="push-btn" class="btn btn-primary btn-push" disabled>
+      <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M4.53 4.75A.75.75 0 015.28 4h6.01a.75.75 0 01.75.75v6.01a.75.75 0 01-1.5 0v-4.2l-5.26 5.261a.75.75 0 01-1.06-1.06l5.26-5.262h-4.2a.75.75 0 01-.75-.75z"/></svg>
+      <span id="push-btn-text">Push to GitHub</span>
+    </button>
+  </footer>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script src="github-api.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
